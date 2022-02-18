@@ -11,20 +11,15 @@
 // obj.getSecret() # returns 2
 
 function createSecretHolder(secret) {
-  const obj = {
-    getSecret() {
-      return this.secret
+  return  {
+    getSecret: function() {
+      return secret;
     },
-    setSecret(val) {
-      this.secret = val;
+    setSecret: function(x) {
+      return secret = x;
     }
   }
-  
 }
-
-obj = createSecretHolder(5)
-obj.getSecret();
-
 
 // 2)	Отсортировать массив 32-битных целых чисел в порядке возрастания количество бит в этих числах.
 
@@ -39,6 +34,16 @@ obj.getSecret();
 	
 // 	Необходимо написать функцию которая принимает массив целых чисел и сортирует его, функция должна изменять входящий массив, а не создавать новый.
 
+function sort (arr) {
+  return arr.forEach(a => console.log(a.toString(32)) )
+  
+}
+
+let  a = [8, 6, 7, 15].map(a=> a.toString(2).split(' ')).map(a => a.filter(e => e === 1))
+console.log(a)
+
+let a = 7;
+console.log(a.toString(2))
 // 3)	Вам дан объект содержащий языки и оценки по этим языкам. Необходимо вернуть массив языков где оценки =>60, отсортированный в убывающем порядке по оценкам.
 	
 // 	Пример:
