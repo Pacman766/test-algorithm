@@ -4,21 +4,21 @@
 
 // getSecret() - возвращает секрет
 // setSecret() - задает секрет
- 
+
 // obj = createSecretHolder(5)
 // obj.getSecret() # returns 5
 // obj.setSecret(2)
 // obj.getSecret() # returns 2
 
 function createSecretHolder(secret) {
-  return  {
-    getSecret: function() {
+  return {
+    getSecret: function () {
       return secret;
     },
-    setSecret: function(x) {
-      return secret = x;
-    }
-  }
+    setSecret: function (x) {
+      return (secret = x);
+    },
+  };
 }
 
 // 2)	Отсортировать массив 32-битных целых чисел в порядке возрастания количество бит в этих числах.
@@ -31,32 +31,40 @@ function createSecretHolder(secret) {
 // Отсортированный массив: [8, 6, 7, 15].
 
 // 	В случае, если 2 числа имеют одинаковое количество бит, вместо бит сравниваются сами числа. Например 10 (...1010) и 12 (...1100) оба имеют одинаковое количество бит (2), но 10 < 12, поэтому в отсортированном массиве оно будет перед 12 ([..., 10, 12, …]).
-	
+
 // 	Необходимо написать функцию которая принимает массив целых чисел и сортирует его, функция должна изменять входящий массив, а не создавать новый.
 
-function sort (arr) {
-  return arr.forEach(a => console.log(a.toString(32)) )
-  
+function sortByBitCount(arr) {
+  arr.sort((a, b) => {
+    c = Number(a.toString(2).split('').sort().join('')).toString().length;
+    d = Number(b.toString(2).split('').sort().join('')).toString().length;
+    return c === d ? a - b : c - d;
+  });
+  return arr;
 }
 
-let  a = [8, 6, 7, 15].map(a=> a.toString(2).split(' ')).map(a => a.filter(e => e === 1))
-console.log(a)
+let arr = [12, 10, 15, 8, 6, 7, 8, 32, 1];
+arr.map(a => console.log(`${a} - ${a.toString(2)}`) ); // watch bits of each number
+console.log(sortByBitCount(arr)); // result
 
-let a = 7;
-console.log(a.toString(2))
 // 3)	Вам дан объект содержащий языки и оценки по этим языкам. Необходимо вернуть массив языков где оценки =>60, отсортированный в убывающем порядке по оценкам.
-	
+
 // 	Пример:
 
 // {"Java": 10, "Ruby": 80, "Python": 65}    -->  ["Ruby", "Python"]
 //  	{"Hindi": 60, "Dutch" : 93, "Greek": 71}  -->  ["Dutch", "Greek", "Hindi"]
 // {"C++": 50, "ASM": 10, "Haskell": 20}     -->  []
 
+function filterLangsByGrade (obj) {
+  // 1) obj to arr of [key,val] => 2) sort in descending order => 3) filter by grade>=60
+  const filtered =  Object.entries(obj).sort(([,a],[,b]) => b-a).reduce((acc, [key,val]) => {
+    if(val>=60) return [...acc, key]
+    return acc;
+  }, [])
+  return filtered
+}
 
-
-
-
-
+console.log(filterLangsByGrade({"Hindi": 60, "Dutch" : 93, "Greek": 71}))
 
 // 4)	(дополнительная задача) Дана функция:
 
