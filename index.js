@@ -21,6 +21,9 @@ function createSecretHolder(secret) {
   };
 }
 
+const obj = createSecretHolder(5);
+console.log(obj.getSecret());
+
 // 2)	Отсортировать массив 32-битных целых чисел в порядке возрастания количество бит в этих числах.
 
 // Исходный массив: [7, 6, 15, 8]
@@ -36,15 +39,24 @@ function createSecretHolder(secret) {
 
 function sortByBitCount(arr) {
   arr.sort((a, b) => {
-    c = Number(a.toString(2).split('').sort().join('')).toString().length;
+    c = Number(a.toString(2).split('').sort().join('')).toString().length; // convert to bits => make array => sort => sorted arr to string =>
+    // back to Number => find string length
     d = Number(b.toString(2).split('').sort().join('')).toString().length;
-    return c === d ? a - b : c - d;
+    return c === d ? a - b : c - d; //  if bits are aqual - sort by numbers values, else - by bits
   });
   return arr;
 }
 
+let p = [12, 10, 15, 8, 6, 7, 8, 32, 1];
+console.log(p.toString(2));
+console.log(p.toString(2).split(''));
+console.log(p.toString(2).split('').sort());
+console.log(p.toString(2).split('').sort().join(''));
+console.log(Number(p.toString(2).split('').sort().join('')));
+console.log(Number(p.toString(2).split('').sort().join('')).toString().length);
+
 let arr = [12, 10, 15, 8, 6, 7, 8, 32, 1];
-arr.map(a => console.log(`${a} - ${a.toString(2)}`) ); // watch bits of each number
+arr.map((a) => console.log(`${a} - ${a.toString(2)}`)); // watch bits of each number
 console.log(sortByBitCount(arr)); // result
 
 // 3)	Вам дан объект содержащий языки и оценки по этим языкам. Необходимо вернуть массив языков где оценки =>60, отсортированный в убывающем порядке по оценкам.
@@ -55,16 +67,18 @@ console.log(sortByBitCount(arr)); // result
 //  	{"Hindi": 60, "Dutch" : 93, "Greek": 71}  -->  ["Dutch", "Greek", "Hindi"]
 // {"C++": 50, "ASM": 10, "Haskell": 20}     -->  []
 
-function filterLangsByGrade (obj) {
+function filterLangsByGrade(obj) {
   // 1) obj to arr of [key,val] => 2) sort in descending order => 3) filter by grade>=60
-  const filtered =  Object.entries(obj).sort(([,a],[,b]) => b-a).reduce((acc, [key,val]) => {
-    if(val>=60) return [...acc, key]
-    return acc;
-  }, [])
-  return filtered
+  const filtered = Object.entries(obj)
+    .sort(([, a], [, b]) => b - a)
+    .reduce((acc, [key, val]) => {
+      if (val >= 60) return [...acc, key];
+      return acc;
+    }, []);
+  return filtered;
 }
 
-console.log(filterLangsByGrade({"Hindi": 60, "Dutch" : 93, "Greek": 71}))
+console.log(filterLangsByGrade({ Hindi: 60, Dutch: 93, Greek: 71 }));
 
 // 4)	(дополнительная задача) Дана функция:
 
@@ -78,5 +92,5 @@ console.log(filterLangsByGrade({"Hindi": 60, "Dutch" : 93, "Greek": 71}))
 
 // just remove setTimeout if it`s not forbidden..
 for (var i = 0; i < 5; i++) {
-    console.log(i);
+  console.log(i);
 }
