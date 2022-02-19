@@ -75,3 +75,8 @@ console.log(filterLangsByGrade({"Hindi": 60, "Dutch" : 93, "Greek": 71}))
 // }
 
 // Необходимо изменить функцию так чтобы она возвращала все значения i (0,1,2,3,4). Нельзя использовать const и let для объявления переменных.
+
+// just remove setTimeout if it`s not forbidden..
+for (var i = 0; i < 5; i++) {
+    console.log(i);
+}
