@@ -94,3 +94,10 @@ console.log(filterLangsByGrade({ Hindi: 60, Dutch: 93, Greek: 71 }));
 for (var i = 0; i < 5; i++) {
   console.log(i);
 }
+
+// or with timout in 1 sec
+  setTimeout(() => {
+    for (var i = 0; i < 5; i++) {
+      console.log(i);
+    }
+  }, 1000);
